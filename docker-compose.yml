@@ -1,57 +1,7 @@
 version: "3"
 
 services:
-  chirpstack-network-server:
-    container_name: Chirp_Networkserver
-    image: chirpstack/chirpstack-network-server:3
-    volumes:
-      - ./configuration/chirpstack-network-server:/etc/chirpstack-network-server
-
-  chirpstack-application-server:
-    container_name: APP_Networkserver
-    image: chirpstack/chirpstack-application-server:3
-    ports:
-      - 8080:8080
-    volumes:
-      - ./configuration/chirpstack-application-server:/etc/chirpstack-application-server
-
-  chirpstack-gateway-bridge:
-    image: chirpstack/chirpstack-gateway-bridge:3
-    container_name: gateway-bridge
-    ports:
-      - 1700:1700/udp
-    volumes:
-      - ./configuration/chirpstack-gateway-bridge:/etc/chirpstack-gateway-bridge
-
-  chirpstack-geolocation-server:
-    image: chirpstack/chirpstack-geolocation-server:3
-    container_name: Geo_server
-    volumes:
-      - ./configuration/chirpstack-geolocation-server:/etc/chirpstack-geolocation-server
-
-  postgresql:
-    image: postgres:9.6-alpine
-    container_name: Pstgresql
-    environment:
-      - POSTGRES_PASSWORD=root
-    volumes:
-      - ./configuration/postgresql/initdb:/docker-entrypoint-initdb.d
-      - postgresqldata:/var/lib/postgresql/data
-
-  redis:
-    image: redis:5-alpine
-    container_name: Redis
-    volumes:
-      - redisdata:/data
-
-  mosquitto:
-    image: eclipse-mosquitto
-    container_name: Mosquitto_Mqtt
-    volumes:
-      - ./configuration/mosquitto:/mosquitto    
-    ports:
-      - 1883:1883
-    
+   
   influxdb:
     image: influxdb:latest
     container_name: InfluxDB
@@ -120,8 +70,6 @@ services:
       - node-red-data:/data
       
 volumes:
-  postgresqldata:
-  redisdata:
   influxdb-storage:
   chronograf-storage:
   grafana-storage:
