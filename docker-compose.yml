@@ -62,6 +62,7 @@ services:
     container_name: Node_Red
     environment:
       - TZ=Europe/Amsterdam
+    restart: always
     ports:
       - "1880:1880"
     networks:
